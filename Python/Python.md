@@ -539,7 +539,7 @@ func1()
 ~~~
 
 ![Default Arguments Values](../image/20230118/20230118_10.PNG)
-<span style="color:green">a는 Local scope에서만 존재
+<span style="color:lightgreen">a는 Local scope에서만 존재</span>
 
 ### 이름 검색 규칙(Name Resolution)
 - 파이썬에서 사용되는 이름(식별자)들은 이름공간(namespace)에 저장되어 있음
@@ -595,8 +595,8 @@ cf) Namespace
 - 해당 scope에 변수가 없는 경우 LEGB rule에 의해 이름을 검색함
   - 변수에 접근은 가능하지만, 해당 변수를 수정할 수 없음
   - 값을 할당하는 경우 해당 scope의 이름공간에 새롭게 생성되기 때문
-  - <span style="color:green">단, 함수 내에서 필요한 상위 scope 변수는 argument로 넘겨서 활용할 것
+  - <span style="color:lightgreen">단, 함수 내에서 필요한 상위 scope 변수는 argument로 넘겨서 활용할 것</span>
 
 - 상위 scope에 있는 변수를 수정하고 싶다면, global, nonlocal 키워드를 활용 가능
   - 단, 코드가 복잡해지면서 변수의 변경을 추적하기 어렵고, 예기치 못한 오류가 발생
-  - 가급적 사용하지 않는 것을 권장하며, <span style="color:green">함수로 값을 바꾸고자 한다면 항상 argument로 넘기고 리턴 값을 사용 하는 것을 추천
+  - 가급적 사용하지 않는 것을 권장하며, <span style="color:lightgreen">함수로 값을 바꾸고자 한다면 항상 argument로 넘기고 리턴 값을 사용 하는 것을 추천</span>
