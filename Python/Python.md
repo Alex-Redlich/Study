@@ -314,3 +314,289 @@ else:
     print('b가 없습니다.')
 
 **else 문은 break로 중단되었는지 여부에 따라 실행**
+~~~
+
+### 20230118
+
+## 0. 들어가기전에...
+
+### 함수
+- 함수를 왜 사용할까요?
+  - **Decomposition(분해)**
+    - 기능을 분해
+    - 재사용 가능하게 만듬
+      - 간결하고 이해하기 쉽게 만듬!
+  - **Abstraction(추상화)**
+    - 복잡한 내용을 모르더라도 사용할 수 있도록(스마트폰)
+    - 재사용성과 가독성, 생산성
+    - 사실 내부 구조를 변경할게 아니라면 몰라도 무방
+      - 그것이 함수의 장점이자 프로그래밍의 매력
+      - 스마트폰의 원리를 잘 몰라도 우리는 잘 사용할 수 있음
+
+## 1. 함수 기초
+
+### 함수의 종류
+- 함수는 크게 3 가지로 분류
+  - 내장 함수 
+    - 파이썬에 기본적으로 포함된 함수
+  - 외장 함수
+    - import 문을 통해 사용하며, 외부 라이브러리에서 제공하는 함수
+  - 사용자 정의 함수
+    - 직접 사용자가 만드는 함수
+
+### 함수의 정의
+- 함수(Function)
+  - 특정한 기능을 하는 코드의 조각(묶음)
+  - 특정 코드를 매번 다시 작성하지 않고, 필요시에만 호출하여 간편히 사용
+
+![함수 정의](../image/20230118/20230118_1.PNG)
+
+### 함수 기본 구조
+- 선언과 호출(define & call)
+- 입력(Input)
+- 문서화(Docstring)
+- 범위(Scope)
+- 결과값(Output)
+
+![함수 기본구조](../image/20230118/20230118_2.PNG)
+
+### 선언과 호출(define & call)
+
+- 함수의 선언은 **def 키워드** 를 활용함
+- 들여쓰기를 통해 **Function body**(실행될 코드 블록)를 작성함
+  - Docstring은 함수 body앞에 선택적으로 작성가능
+  - 작성시에는 반드시 첫번째 문장에 문자열 ''''''
+  - 함수는 parameter를 넘겨줄 수 있음
+  - 함수는 동작 후에 return을 통해 결과값을 전달함
+### 함수의 정의
+- 함수를 사용하기 위해서는 먼저 함수를 **정의**해야 함
+
+![함수 정의](../image/20230118/20230118_3.PNG)
+
+### 선언과 호출(define & call)
+- 함수는 함수명()으로 호출하여 사용
+  - parameter가 있는 경우, 함수명(값1,값2, …)으로 호출
+- 함수는 호출해야만 작동함
+- 함수는 호출되면 코드를 실행하고 return 값을 반환하고 종료
+
+![선언 호출](../image/20230118/20230118_4.PNG)
+
+#### 함수 실행 순서 예시
+- 이 코드의 실행 결과는 왜 9 일까요?
+~~~Python
+num1 = 0
+num2 = 1
+
+def func1(a,b):
+    return a+b
+
+def func2(a,b):
+    return a-b
+
+def func3(a,b):
+    return func1(a,5) + func2(5,b)
+
+res = func3(num1,num2)
+
+print(res)
+'''
+9
+'''
+~~~
+
+## 2. 함수의 결과값(Output)
+
+### 값에 따른 함수의 종류
+- Void function
+  - 명시적인 return 값이 없는 경우, None을 반환하고 종료
+- Value returning function
+  - 함수 실행 후, return문을 통해 값 반환
+  - return을 하게 되면, 값 반환 후 **함수가 바로 종료**
+
+#### ***주의*** - print vs return
+- print 함수와 return의 차이점
+  - print를 사용하면 호출될 때마다 값이 출력됨(주로 테스트를 위해 사용)
+  - 데이터 처리를 위해서는 return 사용
+
+![void vs Value return](../image/20230118/20230118_5.PNG)
+
+- REPL(Read-Eval-Print Loop)환경에서는 마지막으로 작성된 코드의 리턴 값을 보여주므로 같은 동작을 하는 것으로 착각 할 수 있음
+  
+### 두개 이상의 값 반환
+- 아래 코드의 문제점은 무엇일까?
+~~~python
+def mandp(x,y):
+    return x-y
+    return x*y
+
+y = mandp(4,5)
+print(y) # -1
+~~~
+- **return은 항상 하나의 값 만을 반환**
+
+두 개 이상의 값을 반환하는 방법은?
+- 반환 값으로 튜플 사용
+~~~python
+def mandp(x,y):
+    return x-y, x*y
+
+y = mandp(4,5)
+print(y) # (-1,20)
+print(type(y)) # <class 'tuple>
+~~~
+
+### 함수 반환 정리
+- return X → None
+- return O → 하나를 반환
+  → 여러개를 원한다면, Tuple 활용(혹은 list와 같은 컨테이너 사용)
+
+## 3. 함수의 입력(Input)
+
+### Parameter와 Argument
+- Parameter : 함수를 정의할 때, 함수 내부에서 사용되는 변수
+- Argument : 함수를 호출 할 때, 넣어주는 값
+
+![parameter,argumnet](../image/20230118/20230118_6.PNG)
+
+### Argument
+- Argument란?
+  - 함수 호출 시 함수의 prarameter를 통해 전달되는 값
+  - Argument는 소괄호 안에 할당 `func_name(argument)`
+    - 필수 Argument : 반드시 전달되어야 하는 argument
+    - 선택 Argument : 값이 전달하지 않아도 되는 경우는 기본값이 전달
+
+#### Positional Arguments
+- 기본적으로 함수 호출 시 Argument는 위치에 따라 함수 내에 전달 됨
+
+![Positional Arguments](../image/20230118/20230118_7.PNG)
+
+#### Keyword Arguments
+- 직접 변수의 이름으로 특정 Argument를 전달할 수 있음
+- Keyword Argument 다음에 Positional Argument를 활용할 수 없음
+
+![Keyword Arguments](../image/20230118/20230118_8.PNG)
+
+#### Default Arguments Values
+- 기본값을 지정하여 함수 호출 시 argument 값을 설정하지 않도록 함
+  - 정의된 것 보다 더 적은 개수의 argument 들로 호출될 수 있음
+  
+![Default Arguments Values](../image/20230118/20230118_9.PNG)
+
+## 4. Python의 범위(Scope)
+
+### Python의 범위(Scope)
+- 함수는 코드 내부에 local scope를 생성하며, 그 외의 공간인 global scope로 구분
+
+- scope
+  - global scope : 코드 어디에서든 참조할 수 이쓴ㄴ 공간
+  - local scope : 함수가 만든 scople. 함수 내부에서만 참조 가능
+- variable
+  - global variable : global scope에 정의된 변수
+  - local variable : local scope에 정의된 변수
+
+### 변수 수명주기(lifecycle)
+- 변수는 각자의 생명주기(lifecycle)가 존재
+  - built-in scope
+    - 파이썬이 실행된 이후부터 영원히 유지
+  - global scope
+    - 모듈(~~.py)이 호출된 시점 이후 혹은 인터프리터가 끝날 때까지 유지
+  - local scope
+    - 함수가 호출될 때 생성되고, 함수가 종료될 때까지 유지
+- 변수가 사라진다 : 더이상 접근을 할 수 없다.
+
+ex)
+~~~python
+def func1():
+  print('func1 시작')
+
+  def func2():
+    print('func2 시작')
+    print('func2 끝')
+    return
+
+  func2()
+  return
+
+'''
+# 함수를 실행하지 않음
+'''
+~~~
+ex2)
+~~~python
+x='글로벌!' # global space에 속함
+def func1():
+
+  def func2():
+    print(x)
+
+  func2()
+
+func1()
+
+'''
+글로벌!
+'''
+~~~
+
+![Default Arguments Values](../image/20230118/20230118_10.PNG)
+<span style="color:lightgreen">a는 Local scope에서만 존재
+
+### 이름 검색 규칙(Name Resolution)
+- 파이썬에서 사용되는 이름(식별자)들은 이름공간(namespace)에 저장되어 있음
+cf) Namespace
+
+(1) built-in : 이미들어있는 NS
+
+(2) global : 파이썬 안에서 생성된 NS
+
+(3) enclosed : 함수 중첩시 함수와 함수사이에 있는 NS
+
+(4) local - 함수 안쪽에 생성되는 NS
+
+- 아래와 같은 순서로 이름을 찾아나가며, **LEGB Rule**이라고 부름
+  - Local scope : 지역 범위(현재 작업중인 범위)
+  - Enclosed scope : 지역 범위 한 단계 위 범위
+  - Global scope : 최상단에 위치한 범위
+  - Built-in scope : 모든 것을 담고 있는 범위(정위하지 않고 사용할 수 있는 모든 것)
+- **함수 내에서는 바깥 Scope의 변수에 접근 가능하나 수정 할 수 없음**
+- **같은 이름으로 정의되면 LEGB순으로 찾아 할당한다.**
+  
+순서 : L -> E -> G -> B
+
+![NS 순서](../image/20230118/20230118_11.PNG)
+
+### global 문
+- 현재 코드 블록 전체에 적용되며, 나열된 식별자(이름)이 global variable임을 나타냄
+  - global에 나열된 이름은 같은 코드 블록에서 global 앞에 등장 할 수 없음
+  - global에 나열된 이름은 parameter, for 루프 대상, 클래스/함수 정의 등으로 정의되지 않아야 함.
+
+#### global 예시
+![global 예시](../image/20230118/20230118_12.PNG)
+
+- `global x` - local 변수 값을  global 변수 값으로 바꿈
+  
+#### global 관련 에러
+![global관련에러](../image/20230118/20230118_13.PNG)
+
+### nonlocal
+- global을 제외하고 가장 가까운(둘러싸고 있는) scope의 변수를 연결하도록 함
+  - nonlocal에 나열된 이름은 같은 코드 블록에서 nonlocal앞에 등장 할 수 없음
+  - nonlocal에 나열된 이름은 parameter, for 루프 대상, 클래스/함수 정의 등으로 정의되지 않아야 함
+- global과는 달리 이미 존재하는 이름과의 연결과 가능함
+
+#### nonlobal 예시
+![nonlobal 예시](../image/20230118/20230118_14.PNG)
+
+#### nonlocal, global 비교
+![global관련에러](../image/20230118/20230118_15.PNG)
+
+### 함수의 범위 주의
+- 기본적으로 함수에서 선언된 변수는 local scope에 생성되며, 함수 종료 시 사라짐
+- 해당 scope에 변수가 없는 경우 LEGB rule에 의해 이름을 검색함
+  - 변수에 접근은 가능하지만, 해당 변수를 수정할 수 없음
+  - 값을 할당하는 경우 해당 scope의 이름공간에 새롭게 생성되기 때문
+  - <span style="color:lightgreen">단, 함수 내에서 필요한 상위 scope 변수는 argument로 넘겨서 활용할 것
+
+- 상위 scope에 있는 변수를 수정하고 싶다면, global, nonlocal 키워드를 활용 가능
+  - 단, 코드가 복잡해지면서 변수의 변경을 추적하기 어렵고, 예기치 못한 오류가 발생
+  - 가급적 사용하지 않는 것을 권장하며, <span style="color:lightgreen">함수로 값을 바꾸고자 한다면 항상 argument로 넘기고 리턴 값을 사용 하는 것을 추천
