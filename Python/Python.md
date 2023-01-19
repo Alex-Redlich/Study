@@ -600,3 +600,4 @@ cf) Namespace
 - 상위 scope에 있는 변수를 수정하고 싶다면, global, nonlocal 키워드를 활용 가능
   - 단, 코드가 복잡해지면서 변수의 변경을 추적하기 어렵고, 예기치 못한 오류가 발생
   - 가급적 사용하지 않는 것을 권장하며, <span style="color:lightgreen">함수로 값을 바꾸고자 한다면 항상 argument로 넘기고 리턴 값을 사용 하는 것을 추천</span>
+  테스트
