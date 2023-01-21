@@ -600,4 +600,40 @@ cf) Namespace
 - 상위 scope에 있는 변수를 수정하고 싶다면, global, nonlocal 키워드를 활용 가능
   - 단, 코드가 복잡해지면서 변수의 변경을 추적하기 어렵고, 예기치 못한 오류가 발생
   - 가급적 사용하지 않는 것을 권장하며, <span style="color:lightgreen">함수로 값을 바꾸고자 한다면 항상 argument로 넘기고 리턴 값을 사용 하는 것을 추천</span>
-  테스트
+  
+### 20230119
+
+## 1. 함수의 응용
+
+### 내장함수(Built-in Functions)
+- 파이썬 인터프리터에는 항상 사용할 수 있는 많은 함수와 형(type)이 내장되어 있음
+
+### map
+`map(function, iterable)`
+- 순회 가능한 데이터구조(iterable)의 모든 요소에 함수(function)적용하고, 그 결과를 map object로 반환
+
+![map 함수](../image/20230119/20230119_1.PNG)
+
+### map 활용 사례
+- 알고리즘 문제 풀이시 input 값들을 숫자로 바로 활용하고 싶을 때 
+
+![map 함수](../image/20230119/20230119_2.PNG)
+
+### filter
+`filter(function,iterable)`
+- 순회 가능한 데이터구조(iterable)의 모든 요소에 함수(function)적용하고, 그 결과가 True인 것들을 filter object로 반환
+
+![filter](../image/20230119/20230119_3.PNG)
+
+### zip
+`zip(*iterables)`
+- 복수의 iteable을 모아 튜플을 원소로 하는 zip object를 반환
+
+![zip](../image/20230119/20230119_4.PNG)
+
+### lambda 함수
+`lambda[parameter]:표현식
+- 람다 함수
+  - 표현식을 계산한 결괏값을 반환하는 함수로, 이름이 없는 함수여서 익명 함수라고도 불림
+- 특징
+  
