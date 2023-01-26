@@ -921,3 +921,121 @@ print('apple'.index('k')) # ValueError : ~~~
 !Quiz
 
 주어진 문자열에서 숫자, 문자, 기호가 각각 몇개인지 판단하는 함수를 작성해보세요
+
+!Anw
+
+~~~python
+def check(input_str):
+  char_count = 0
+  digit_count = 0
+  symbol_count = 0
+
+  for char in input_str:
+    if char.isalpha():
+        char_count += 1
+    elif char.isdigit() :
+        digit_count +=1
+    else :
+        symbol_count +=1
+
+  return (char_count, digit_count, symbol_count)
+~~~
+
+## 순서가 없는 데이터
+
+### 셋(set)
+- Set이란 중복되는 요소가 없이, 순서에 상관없는 데이터들의 묶음
+  - 데이터의 중복을 허용하지 않기 때문에 중복되는 원소가 있다면 하나만 저장
+  - 순서가 없기 때문에 인덱스를 이용한 접근 불가능
+- 수학에서의 집합을 표현한 컨테이너
+  - 집합 연산이 가능(여집합을 표현하는 연산자는 별도로 존재 X)
+  - 중보된 값이 존재하지 않음
+- 담고 있는 요소를 삽입 변경, 삭제 가능 -> 가변 자료형(muutable)
+ 
+![셋 메서드](../image/20230126/20230126_1.PNG)
+
+#### 추가 및 변경
+`.add(elem)`
+- 셋에 값을 추가
+  
+`.update(*others)`
+- 여러 값을 추가
+
+#### 요소 삭제
+`.remove(elem)`
+- SET에서 삭제하고, 없으면 KeyError
+
+`.discard(elem)`
+- SET에서 삭제하고, 없어도 에러가 발생하지 않음
+
+#### 삭제
+`.pop()`
+- 임의의 원소를 제거해 반환
+
+`.clear()`
+- 모든 항목을 제거
+
+#### 집합관련 함수
+`s.isdisjonit(t)`
+- SET s가 SET t의 서로 같은 항목을 하나라도 갖고 있지 않는 경우, True반환(서로소)
+
+`s.issubset(t)`
+- SET s가 SET t의 하위 SET인 경우, True반환 
+
+`s.issuperset(t)`
+- SET s가 SET t의 상위 SET인 경우, True반환 
+### 딕셔너리(Dict)
+- 키-값(Key-value)쌍으로 이뤄진 자료형
+- Dictionary 의 키(key)
+  - key는 변경 불가능한 데이터(immutable)만 활용가능
+    - string,integer,float,boolean,tuple,range
+- 각 키의 값(values)
+  - 어떤 형태든 관계없음
+
+![딕셔너리 메소드](../image/20230126/20230126_2.PNG)
+
+#### 조회
+`.get(key[,default])`
+- key를 통해 value를 가져옴
+- keyErroe가 발생하지 않으며, default값을 설정할 수 있음(기본 : None)
+
+#### 추가 및 삭제
+`.pop(key[,default])`
+- key가 딕셔너리에 있으면 제거하고 해당 값을 반환
+- 그렇지 않으면 default를 반환
+- default값이 없으면 KeyError
+
+`.update()`
+- 값을 제공하는 key,value로 덮어씁니다.
+
+
+
+## 얕은 복사와 깊은 복사(shallow Copy & Deep Copy)
+
+### 복사 방법
+#### 할당(Assignment)
+- 대입 연산자(=)
+  - 리스트 복사 확인하기
+  - 대입연산자를 통한 복사는 해당 객체에 대한 객체 참조(주소값)를 복사
+  
+#### 얕은 복사(Shallow copy)
+- Slice 연산자 활용하여 같은 원소를 가진 리스트지만 연산된 결과를 복사(다른 주소값)
+- 주의사항 : 복사하는 리스트의 원소가 주소를 참조하는 경우
+
+#### 깊은 복사(Deep copy)
+
+- import copy
+- 리스트 복사 확인하기
+
+#### 결론
+- 리스트를 복사하고 싶다는 욕망이 든다면! 무조건 print찍어볼 것 !(혹은 디버깅 툴로 리스트 변화를 확인할 것)
+- 그냥 모두 copy.deepcopy() 쓰면 되는거 아닌가요? -> 메모리 용량 증가, 컴퓨터 입장도 생각해줍시다..
+
+#### 얕은복사 vs 깊은 복사
+- 얕은 복사과 깊은 복사 모두 객체를 복사하긴한다. 하지만 얕은 복사의 경우 저장된 데이터들까지 복사를 하진 않기때문에 서로가 영향을 주고 받으며, 완전히 독립적인 객체로 만들기 위해서는 깊은 복사가 필요한 것이다.
+
+마지막으로 정리를 해보면,
+
+- 대입문을 통한 복사는 단순 복제(동일한 객체를 참조)
+- 얕은 복사는 껍데기만 복사, 내용은 동일한 객체를 참조
+- 깊은 복사는 껍데기를 복사하고 내용도 재귀적으로 복사
