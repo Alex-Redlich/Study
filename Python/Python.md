@@ -1168,7 +1168,322 @@ def check(input_str):
 - @데코레이터(함수명) 형태로 함수 위에 작성
 - 순서대로 적용 되기 때문에 작성 순서가 중요
 - 데코레이터를 활용하면 쉽게 여러 함수를 원하는대로 변경할 수 있음
+  
 ### 클래스 메서드와 인스턴스 메서드
+- 클래스 메서드 -> 클래스 변수 사용
+- 인스턴스 메서드 -> 인스턴스 변수 사용
+- 그렇다면 인스턴스 변수, 클래스 변수 모두 사용하고 싶다면?
+  - 클래스는 인스턴스 변수 사용이 불가능
+  - **인스턴스 메서드는 클래스 변수, 인스턴스 변수 둘 다 사용이 가능**
+
 #### 스태틱 메서드
+- 스태틱 메서드
+  - 인스턴스 변수, 클래스 변수를 전혀 다루지 않는 메서드
+- 언제 사용하는가?
+  - 속성을 다루지 않고 단지 기능(행동)만을 하는 메서드를 정의할 때, 사용
+- 인스턴스 변수, 클래스 변수 아무것도 사용하지 않을 경우에 사용
+  - 즉, 객체 상태나 클래스 상태를 수정할 수 없음
+  - @staticmethod 데코레이터를 사용하여 정의
+- 일반 함수처럼 동작하지만, 클래스의 이름공간에 귀속됨
+  - 주로 해당 클래스로 한정하는 용도로 사용
+  
+![스태틱](../image/20230130/20230130_3.PNG)
 
 ### 메서드 정리
+- 인스턴스 메서드
+  - 메서드를 호출한 인스턴스를 의미하는 self 매개 변수를 통해 인스턴스를 조작
+- 클래스 메서드
+  - 클래스를 의미하는 cls 매개 변수를 통해 클래스를 조작
+- 스태틱 메서드
+  - 클래스 변수나 인스턴스 변수를 사용하지 않는 경우에 사용
+    - 객체 상태나 클래스 상태를 수정할 수 없음
+  
+![정리](../image/20230130/20230130_4.PNG)
+
+
+## 객체지향 프로그래밍
+
+### 객체 지향의 핵심 4가지
+- 추상화 : 핵심이 되는 부분만 추리기
+- 상속 : 코드의 재사용성을 높힘, 기능을 확장
+- 다형성 : 각자의 특성에 따라 다른 결과 만들기
+- 캡슐화 : 데이터 보호하기
+
+### 추상화
+- 현실 세계를 프로그램 설계에 반영
+  - 복잡한 것은 숨기고, 필요한 것만 드러내기
+  - 공통 부분을 묶어주기
+
+![추상화](../image/20230131/20230131_1.PNG)
+
+### 상속
+- 상속이란
+  - 두 클래스 사이 부모 - 자식 관계를 정립하는 것
+- 클래스는 상속이 가능함
+  - 모든 파이썬 클래스는 object를 상속 받음
+
+![상속1](../image/20230131/20230131_2.PNG)
+
+- 하위 클래스는 상위 클래스에 정의된 속성, 행동, 관계 및 제약 조건을 모두 상속 받음
+- 부모클래스의 속성, 메서드가 자식 클래스에 상속되므로, 코드 재 사용성이 높아짐
+
+![상속2](../image/20230131/20230131_3.PNG)
+
+#### 상속 관련 함수와 메서드
+- `isinstance(object, classinfo)`
+  - classinfo의 instance 거나 subcalss* 인 경우 True
+
+![상속3](../image/20230131/20230131_4.PNG)
+
+- `issubclass(class, classinfo)`
+  - class가 classinfo의 subclass면 True
+  - classinfo의 모든 항목을 검사
+
+![상속4](../image/20230131/20230131_5.PNG)
+
+- `super()`
+  - 자식 클래스에서 부모클래스를 사용하고 싶은 경우
+
+![상속5](../image/20230131/20230131_6.PNG)
+
+#### 상속 정리
+- 파이썬의 모든 클래스는 object로부터 상속됨
+- 부모 클래스의 모든 요소(속성, 메서드)가 상속됨
+- super()를 통해 부모 클래스의 요소를 호출할 수 있음
+- 메서드 오버라이딩을 통해 자식 클래스에서 재정의 가능함
+- 상속관계에서의 이름 공간은 인스턴스, 자식 클래스, 부모 클래스 순으로 탐색
+
+#### 다중 상속
+- 두 개 이상의 클래스를 상속 받는 경우
+- 상속 받은 모든 클래스의 요소를 활용 가능함
+- 중복된 속성이나 메서드가 있는 경우 상속 순서에 의해 결정됨
+
+![상속6](../image/20230131/20230131_7.PNG)
+![상속7](../image/20230131/20230131_8.PNG)
+
+#### 상속 관련 함수와 메서드
+- mro 메서드(Method Resolution Order)
+  - 해당 인스턴스의 클래스가 어떤 부모 클래스를 가지는지 확인하는 메서드
+  - 기존의 인스턴스 -> 클래스 순으로 이름 공간을 탐색하는 과정에서 상속관계가 있으면 인스턴스 -> 자식 클래스 -> 부모 클래스로 확장
+
+### 다형성
+- 다형성(Polymorphism)이란?
+  - 여러 모양을 뜻하는 그리스어
+  - 동일한 메서드가 클래스에 따라 다르게 행동할 수 있음을 의미
+  - 즉, 서로 다른 클래스에 속해있는 객체들이 동일한 메세지에 대해 다른 방식으로 응답할 수 있음
+#### 메서드 오버라이딩
+- 상속받은 메서드를 재정의
+  - 클래스 상속 시, 부모 클래스에서 정의한 메서드를 자식 클래스에서 변경
+  - 부모 클래스의 메서드 이름과 기본 기능은 그대로 사용하지만, 특정 기능을 바꾸고 싶을 때 사용
+  - 상속 받은 메서드를 재정의
+    - 상속받은 클래스에서 같은 이름의 메서드로 덮어씀
+    - 부모 클래스의 메서드를 싱핼시키고 싶은 경우 super를 사용
+
+### 캡슐화
+- 객체의 일부 구현 내용에 대해 외부로부터의 직접적인 액세스를 차단
+  - 예시 : 주민등록번호
+- 파이썬에서 암묵적으로 존재하지만, 언어적으로는 존재하지 않음
+- 접근 제어자 종류
+  - public Access Modifier 
+    - 모두 가능
+  - Protected Access Modifier
+    - 상속받은 관계에서만 가능
+  - Private Access Modifier
+    - 나만 가능
+
+- Public Member 
+  - 언더바 없이 시작하는 메서드나 속성
+  - 어디서나 호출이 가능, 하위 클래스 오버라이드 허용
+  - 일반적으로 작성되는 메서드와 속성의 대다수를 차지
+- Protected Member
+  - 언더바 1개로 시작하는 메서드나 속성
+  - 암묵적 규칙에 의해 부모 클래스 내부와 자식 클래스에서만 호출 가능
+  - 하위 클래스 오버라이드 허용
+- Private Member
+  - 언더바 2개로 시작하는 메서드나 속성
+  - 본 클래스 내부에서만 사용이 가능
+  - 하위클래스 상속 및 호출 불가능(오류)
+  - 외부 호출 불가능(오류)
+
+- getter 메서드와 setter 메서드
+- 변수에 접근할 수 있는 메서드를 별도로 생성
+  - getter 메서드 : 변수의 값을 읽는 메서드
+    - @property 데코레이터 사용
+  - setter 메서드 : 변수의 값을 설정하는 성격의 메서드
+    - @변수.setter 데코레이터 사용
+
+## 에러와 예외처리
+
+### 디버깅
+
+#### 버그란?
+- 최초의 버그는 1945년 프로그래밍 언어의 일종인 코볼 발명자 그레이스 호퍼가 발견
+- 역사상 최초의 컴퓨터 버그는 Mark 2라는 컴퓨터 회로에 벌레인 나방이 들어가 합선을 일으켜 비정상적으로 동작
+- 이때부터 소프트웨어에서 발생하는 문제를 버그라고 부름
+
+#### 디버깅의 정의
+- 잘못된 프로그램을 수정하는 것을 디버깅이라함 de(없앤다)+bugging(버그)
+- 에러 메세지가 발생하는 경우
+  - 해당 하는 위치를 찾아 메세지를 해결
+- 로직 에러가 발생하는 경우
+  - 명시적인 에러 메세지 없이 예상과 다른 결과가 나온 경우
+    - 정상적으로 동작하였던 코드 이후 작성된 코드를 생각해봄 
+    - 전체 코드를 살펴봄.. 등등
+  
+- print 함수 활용
+  - 특정 함수 결과, 반복/조건 결과 등 나눠서 생각, 코드를 bisection으로 나눠서 생각
+  - 개발 환경(text editor, IDE)등에서 제공하는 기능 활용 : breakpoint, 변수 조회 등
+  - Python tutor 활용
+
+### 문법 에러(Syntax Error)
+- SyntaxError가 발생하면, 파이썬 프로그램은 실행이 되지 않음
+- 파일이름, 줄번호, ^문자를 통해 파이썬이 코드를 읽어 나갈때(parser) 문제가 발생한 위치를 표현
+- 줄에서 에러가 감지된 가장 앞의 위치를 가리키는 캐럿(caret)기호(^)를 표시
+- Invalid syntax : 문법 오류
+~~~python
+while # SyntaxError : invalid syntax
+~~~
+- assign to literal : 잘못된 할당
+~~~python
+5=3 # SyntaxError : cannot assign to literal
+~~~
+- EOL(End of Line)
+~~~python
+print('hello
+# SyntaxError : EOL while scanning string literal
+~~~
+- EOF(End of File)
+~~~python
+print(
+# SyntaxError : inexpected EOF while parsing 
+~~~
+### 예외(Exception)
+- 실행 도중 예상치 못한 상홍을 맞이하면, 프로그램 실행을 멈춤
+  - 문장이나 표현식이 문법적으로 올바르더라도 발생하는 에러
+- 실행 중에 감지되는 에러들을 예외라고 부름
+- 예외는 여러 타입으로 나타나고, 타입이 메세지의 일부로 출력됨
+- 모든 내장 예외는 Exception Class를 상속받아 이뤄짐
+- 사용자 정의 예외를 만들어 관리할 수 있음
+
+- ZeroDivisionError : 0으로 나누고자 할 때 발생 
+~~~python
+10/0 # ZeroDivisionError : division by zero
+~~~
+- NameError : namespace 상에 이름이 없는 경우
+~~~python
+print(name_error)
+# NameError : name 'name_error' is not defined
+~~~
+- TypeError : 타입 불일치
+~~~python
+1 + '1' # TypeError : unsupported operand type(s) for +: 'int' and 'str'
+round('3.5') # TypeError : type str doesn't define __round_-method
+~~~
+- TypeError : argument 누락
+~~~python
+divmod() #TypeError : divmod expected 2 argument, got 0
+
+import random
+random.sample()
+#TypeError : sample() missing 2 required positional arguments : 'population' and 'k'
+~~~
+- TypeError : argument 개수 초과
+~~~python
+divmod(1,2,3) #TypeError : divmod expected 2 argument, got 3
+
+import random
+random.sample(range(3),1,2)
+#TypeError : sample() takes 3 positional arguments but 4 were given
+~~~
+- TypeError : argument type 불일치
+~~~python
+import random
+random.sample(1,2)
+#TypeError : Population must be a sequence. For dicts or sets, use sorted(d).
+~~~
+- ValueError : 타입은 올바르나 값이 적절하지 않거나 없는 경우
+~~~python
+int('3.5') # ValueError : invalid literal for int() with base 10: '3.5'
+
+range(3).index(6) # ValueError : 6 is not in range
+~~~
+
+- IndexError : 인덱스가 존재하지 않거나 범위를 벗어나는 경우 
+~~~python
+empty_list = []
+empty_list[2]
+# IndexError : list index out of range
+~~~
+- KeyError : 해당 키가 존재하지 않는 경우
+~~~python
+song = {'IU' : '좋은날'}
+song['BTS'] #KeyError : 'BTS'
+~~~
+
+- ModuleNotFoundError
+~~~python
+inport ssafy #ModuleNotFoundError : No module named 'ssafy'
+~~~
+
+- ImportError : Module은 있으나 존재하지 않는 클래스/함수를 가져오는 경우
+~~~python
+from random inport samp
+# ImportError : cannot import name 'smap' form 'random'(/usr/lib/...)
+~~~
+
+- KeyboradiInterrupt - 임의로 프로그램을 종료하였을 때
+
+- IndentationError : Indentation이 적절하지 않는 경우
+~~~python
+for i in range(3):
+  print(i) #IndentationError : expected an indented block
+for i in range(3):
+  print(i)
+    print(i) #IndentationError : unexpected indent
+~~~
+![오류예외](../image/20230131/20230131_9.PNG)
+- 예외처리를 할때는 작은 것 부터!
+### 예외 처리
+- try문(statement) / except 절(clause)을 이용하여 예외 처리를 할 수 있음
+- try문
+  - 오류가 발생할 가능성이 있는 코드를 실행
+  - 예외가 발생되지 않으면, except 없이 실행 종료
+- except 문
+  - 예외가 발생하면, except 절이 실행
+  - 예외 상황을 처리하는 코드를 받아서 적절한 조치를 취함
+
+![예외처리](../image/20230131/20230131_10.PNG)
+
+- 작성 방법
+~~~python
+try :
+  try명령문
+except 예외그룹-1 as 변수-1 :
+  예외처리 명령문 1
+except 예외그룹-2 as 변수-2 :
+  예외처리 명령문 2
+finally : <<< 선택사항
+  finally명령문
+~~~
+- 주의 : try문은 반드시 한 개 이상의 except문이 필요
+
+#### 예외 메시지 처리(as)
+- as 키워드를 활용하여 원본 에러 메세지를 사용할 수 있음
+  - 예외를 다른 이름에 대입
+
+![예외 메시지 처리](../image/20230131/20230131_11.PNG)
+
+#### 복수의 예외 처리 
+- 발생 가능한 에러를 모두 명시
+- 에러 별로 별도의 에러처리
+- 순차적으로 수행됨으로, 가장 작은 범주부터 예외 처리를 해야함
+
+### 예외처리 종합
+- try
+  - 코드를 실행함
+- except 
+  - try 문에서 예외가 발생 시 실행함
+- else 
+  - try 문에서 예외가 발생하지 않으면 실행함
+- finally
+  - 예외 발생 여부와 관계없이 항상 실행함
