@@ -241,3 +241,151 @@ else :
   print('Lose T-T')
 ~~~
   
+## 배열2(Array 2)
+
+### 2차원 배열
+#### 2차원 배열의 선언
+- 1차원 List를 묶어놓은 list
+- 2차원 이상의 다차원 List 는 차원에 따라 index를 선언
+- 2차원 list의 선언 : 세로길이(행의 개수), 가로길이(열의개수)를 필요로 함
+- Python에서는 데이터 초기화를 통해 변수선언과 초기화가 가능함
+
+![2차원 배열](../image/20230206/20230206_1.PNG)
+
+~~~python
+N = int(input)
+arr = [list(map(int,input().split()))for _ in range(N)]
+'''
+3
+1 2 3
+4 5 6
+7 8 9
+'''
+~~~
+- 배열 순회
+- n X m 배열의 n*m 개의 모든 원소를 빠짐없이 조사하는 방법 (접근하는 방법)
+
+#### 행 우선 순회
+~~~python
+# i 행의 좌표
+# j 열의 좌표
+for i in range(n):
+  for j in range(m):
+    Array[i][j] # 필요한 연산 수행
+~~~
+
+#### 열 우선 순회
+~~~python
+# i 행의 좌표
+# j 열의 좌표
+for j in range(m):
+  for i in range(n):
+    Array[i][j] # 필요한 연산 수행
+~~~
+
+#### 지그재그 순회
+~~~python
+# i 행의 좌표
+# j 열의 좌표
+for i in range(n):
+  for j in range(m):
+    Array[i][j + (m-1-2*j)*(i%2)]
+    # 필요한 연산 수행
+~~~
+
+#### 델타를 이용한 2차 배열 탐색
+- 2차 배열의 한 좌표에서 4방향의 인접 배열 요소를 탐색하는 방법
+
+~~~python 
+di[] <- [0,0,-1,1] # 상하좌우
+dj[] <- [-1,1,0,0]
+for i : 0 -> N-1
+  for j : 0 -> N-1 :
+    for k in range(4):
+      ni <- i + di[k]
+      nj <- j + dj[k]
+      if 0 <= ni < N and 0 <= nj < N
+      # 유효한 인덱스면
+        test(arr[ni][nj])
+~~~
+
+예시
+~~~python
+di = [0,1,0,-1] # 우하좌상
+dj = [1,0,-1,1]
+N = 3
+for i in range(N):
+  for j in range(N):
+    for k in range(4):
+      ni, nj = i+di[k], j+dj[k]
+      if 0 <= ni < N and 0 <= nj < N
+      print(i,j,ni,nj)
+~~~
+~~~python
+N=3
+for i in range(N):
+  for j in range(N):
+    for di, dj in [[0,1],[1,0],[0,-1],[-1,0]]
+    if 0<= ni < N and 0 < nj < N :
+      print(i,j,ni,nj)
+~~~
+
+- 전치 행렬
+~~~python
+# i : 행의 좌표, len(arr)
+# j : 열의 좌표, len(arr[0])
+arr = [[1,2,3,],[4,5,6],[7,8,9]] # 3*3 행렬
+
+for i in range(3):
+  for j in range(3):
+    if i < j :
+      arr[i][j], arr[j][i] = arr[j][i],arr[i][j]
+~~~
+
+### 부분집합 합(subset Sum)문제
+- 유한 개의 정수로 이루어진 집합이 있을 때, 이 집합의 부분집합 중에서 그 집합의 원소를 모두 더한 값이 0이 되는 경우가 있는지를 알아내는 문제
+- 예를 들어, [-7,-3,-2,5,8]이라는 집합이 있을때 [-3,-2,5]는 이 집합의 부분집합이면서 (-3)+(-2)+(5) = 0 이므로 이 경우의 답은 참이 된다.
+- 완전 검색 기법으로 부분 집합 합 문제를 풀기 위해서는, 우선 집합의 모든 부분집합을 생성 한 후에 각 부분집합의 합을 계산해야 한다.
+- 주어진 집합의 부분집합을 생성하는 방법에 대해서 생각해보자
+- 부분집합의 수
+  - 집합의 원소 n개일 때, 공집합을 포함한 부분집합의 수는 2^n개이다.
+  - 이는 각 원소를 부분집합에 포함시키거나 시키지않는 경우 2가지 경우를 모든 원소에 적용한 경우의 수와 같다.
+  - ex {1,2,3,4} => 2x2x2x2 = 16개(2^4)
+
+- 각 원소가 부분집합에 포함되어있는지를 loop 이용하여 확인하고 부분집합을 생성하는 방법
+
+~~~python
+bit = [0,0,0,0]
+for i in range(2):
+  bit[0] = i # 0번째 원소
+  for j in range(2):
+    bit[1] = j # 1번째 원소
+    for k in range(2): 
+      bit[2] = k # 2번째 원소
+      for l in range(2):
+        bit[3] = l # 3번째 원소
+        print_subset(bit)
+~~~
+
+- 비트 연산자
+  - & 비트 단위로 AND 연산을 한다
+  - | 비트 단위로 OR 연산을 한다
+  - << 피연산자의 비트 열을 왼쪽으로 이동시킨다.
+  - `>> 피연산자의 비트 열을 오른쪽으로 이동시킨다.
+- << 연산자
+  - 1 << n : 2^n 즉, 원소가 n개일 경우의 모든 부분집합의 수를 의미한다.
+  - ㅑ & (1<<j) : i의 j 번째 비트가 1인지 아닌지를 검사한다.
+
+### 보다 간결하게 부분집합을 생성하는 방법
+~~~python
+arr = [3,6,7,1,5,4]
+
+n = len(arr)
+
+for i in range(1<<n) :
+  for j in range(n):
+    if i & (1<<j):
+      print(arr[j], end=", ")
+  print()
+print()
+~~~
