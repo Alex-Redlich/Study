@@ -493,6 +493,91 @@ def construct_candidates(a,k, input, c):
       ncandidates += 1
       return ncandidates
 ~~~
+#### 부분 집합의 합
+- 집합{1,2,3} 의 원소에 대해 각 부분집합에서의 포함 여부를 트리로 표현
+- i 원소의 포함 여부를 결정 하면 i까지의 부분 집합의 합 si를 결정 
+- si-1이 찾고자 하는 부분집합의 합보다 크면 남은 원소를 고려할 필요가 없음
+- A[i] 원소를 부분 집합의 원소로 고려하는 재귀 함수(A는 서로 다른 자연수의 집합)
+~~~python
+def f(i,k):
+  if i == k:
+    for j in range(k):
+      if bit[k]:
+        s += A[j] # 부분집합의 합
+  else:
+    bit[i] = 1
+    f(i+1, k)
 
+A = [1,2,3]
+N = len(A)
+bit = [0] * N
+~~~
+~~~python
+# i-1 원소까지 고려한 합 s, 찾으려는 합 t
+def f(i,N,s,t):
+  if s == t
+  elif i == N
+  elif s > t
+  else :
+    subset[i] = 1
+    f(i+1, N, s+A[i], t)
+    subset(+1,N,s,t)
+~~~
 ### 분할정복
+- 설계 전략 
+  - 분할(Divide) : 해결할 문제를 여러 개의 작은 부분으로 나눈다.
+  - 정복(Conquer) : 나눈 작은 문제를 각각 해결한다.
+  - 통합(Combine) : (필요하다면) 해결된 해답을 모은다.
+- 거듭 제곱(Exponentitation)
+  - O(n)
+~~~python
+def Power(Base, Exponenet) : 
+  if base == 0:
+    return 1
+  result = 1 
+  for i in range(Exponent):
+    result *= Base
+  return result
+~~~
+~~~python
+def Power(Base, Exponent) :
+  if Exponent == 0 or Base == 0:
+    return 1
+  if Exponent % 2 == 0:
+    NewBase = Power(Base, Exponent/2)
+    return NewBase*NewBase
+  else:
+    NewBase = Power(Base, (Exponent-1)/2)
+    return (NewBase * NewBase) * Base
+~~~
+
+### 퀵 정렬
+- 주어진 배열을 두 개로 분할하고, 각각을 정렬한다.
+- 합병정렬은 그냥 두 부분으로 나누는 반면에, 퀵정렬은 분할할 때, 기준 아이템(pivot item) 중심으로, 이보다 작은 것은 왼편, 큰 것은 오른편에 위치시킨다.
+- 각 부분 정렬이 끝난 후, 합병정렬은 합병이란 후처리 작업이 필요하나, 퀵정렬은 필요하지 않는다.
+~~~python
+def quickSort(a, begin, end):
+  if begin < end :
+    p = partition(a, begin, end)
+    quickSort(a, begin, p-1)
+    quickSort(a, p+1, end)
+~~~
+~~~python
+def partition(a, begin, end):
+  pivot = (begin + end) //2
+  L = begin
+  R = end
+  while L < R :
+    while(L<R and a[L] < a[pivot]):
+      L += 1
+    while(L < R and a[R] >= a[pivot]):
+      R -= 1
+      if L < R :
+        if L == pivot:
+          pivot = R
+          a[L], a[R] = a[R], a[L]
+  a[pivot], a[R] = a[R] , a[L]
+  return R
+~~~
+
 
