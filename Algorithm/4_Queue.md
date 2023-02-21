@@ -248,7 +248,6 @@ def bfs(v, N): # 마지막 정점 N
       if visited[v] == 0:
         queue.append(v)# v 인큐
         visited[v] = visited[t] + 1 # v 인큐 표시
-~~~
 
 V, E = map(int, input().split())
 arr = list(map(int, input().split()))
@@ -259,3 +258,4 @@ for i in range(E):
   adjL[n2].append(n1)
 
 bfs(1, V) # 시작정점 1, V, 마지막 정점
+~~~
