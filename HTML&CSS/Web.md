@@ -66,16 +66,104 @@
   - class: 공백으로 구분된 해당 요소의 클래스의 목록(css,js에서 요소를 선택하거나 접근)
   - style : inline 스타일
 
-
-
 ### HTML 문서 구조화
+
+#### 텍스트 요소
+
+![문서구조화](../image/HTML_CSS//캡처_6.PNG)
+
+#### 그룹 컨텐츠
+
+![그룹 컨텐츠](../image/HTML_CSS//캡처_7.PNG)
+
+#### form
+- <form> 은 사용자의 정보(데이터)를 제출하기 위한 영역
+- <form> 기본 속성
+  - action : form을 처리할 서버의 URL
+  - method : form을 제출할 때 사용할 HTTP 메서드(GET or POST)
+
+![form](../image/HTML_CSS//캡처_8.PNG)
+
+#### input
+- 다양한 타입을 가지는 입력 데이터 유형과 위젯이 제공됨
+- <input> 의 대표적인 속성
+  - name : form control에 적용되는 이름(이름/값 페어로 전송)
+  - value : form control에 적용되는 값(이름/값 페어로 전송)
+  - required, readonly, autofocus 등
+
+![input](../image/HTML_CSS//캡처_9.PNG)
+
+#### input label
+- label을 클릭하여 input 자체의 초점을 맞추거나 활성화 시킬 수 있음
+  - 사용자는 선택할 수 있는 영역이 늘어나 웹 / 모바일(터치) 환경에서 편하게 사용할 수 있음
+  - label과 input 입력의 관계가 시각적 뿐만 아니라 화면리더기에서도 label을 읽어 쉽게 내용을 확인 할 수 있도록 함
+
+![input label](../image/HTML_CSS//캡처_10.PNG)
+
+#### input 유형 - 일반
+- 일반적으로 입력을 받기 위하여 제공되며 type으로 HTML 기본 검증 혹은 추가 속성을 활용할 수 있음
+  - text : 일반 텍스트 입력
+  - password : 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
+  - email : 이메일 형식이 아닌 경우 form 제출 불가
+  - number : min, max, step 속성을 활용하여 숫자 범위 설정 가능
+  - file : accept 속성을 활용하여 파일 타입 지정 가능
+#### input 유형 - 항목 중 선택
+- label로 선택에 대한 내용을 작성하고, 항목으로 선택할 수 있는 input을 제공
+- 동일한 범주에 속하는 항목들은 name을 통일하고, 선택된 항목의 값은 value로 지정함
+  - checkbox : 다중 선택
+  - radio : 단일 선택
 
 ## CSS
 
 ### CSS 이해하기
+- Cascading Style Sheets
+- 스타일을 지정하기 위한 언어
+- 선택하고, 스타일을 지정한다.
+
+![css](../image/HTML_CSS//캡처_11.PNG)
+
+- CSS 구문은 선택자를 통해 스타일을 지정할 HTML 요소를 선택
+- 중괄호 안에서는 속성과 값, 하나의 쌍으로 이루어진 선언을 진행
+- 각 쌍은 선택한 요소의 속성, 속성에 부여할 값을 의미
+  - 속성(Property) : 어떤 스타일 기능을 변경할지 결정
+  - 값(Value) : 어떻게 스타일 기능을 변경할지 결정
+
+#### CSS 정의 방법
+- 인라인(inLine)
+- 내부 참조(Embedding) - <style>
+- 외부 참조(link file) - 분리된 CSS 파일
+
+#### CSS with 개발자 도구
+- styles : 해당 요소에 선언된 모든 CSS
+- computed : 해당 요소에 최종 계산된 CSS
 
 ### CSS Selectors
+#### 선택자(Selector) 유형
+- 기본 선택자
+  - 전체 선택자(*), 요소(tag) 선택자
+  - 클래스(class) 선택자, 아이디(id) 선택자, 속성(attr) 선택자
+- 결합자(Combinators)
+  - 자손 결합자, 자식 결합자
 
-### CSS 단위
+#### CSS 선택자 정리
+- 요소 선택자
+  - HTML 태그를 직접 선택
+- 클래스(class) 선택자
+  - 마침표(.)문자로 시작하며, 해당 클래스가 적용된 항목을 선택
+- 아이디(id) 선택자
+  - (#) 문자로 시작하며, 해당 아이디가 적용된 항목을 선택
+  - 일반적으로 하나의 문서에 1번만 사용, 여러 번 사용해도 동작되지만, 단일 id를 사용하는 것을 권장
+#### CSS 적용 우선순위(cascading order) 
+- CSS 우선순위를 아래와 같이 그룹을 지어볼 수 있다.
+  - 1.중요도(Importance) - 사용시 주의
+    - !important
+  - 2. 우선순위(Specificity)
+  - 인라인 > id > class, 속성 > 요소
 
 ### CSS 상속
+- CSS는 상속을 통해 부모 요소의 속성을 자식에게 상속한다.
+  - 속성(프로퍼티) 중에는 상속이 되는 것과 되지 않는 것들이 있다.
+  - 상속 되는 것 예시
+    - Text 관련 요소(font, color, text-align), opacity, visibility 등
+  - 상속 되지 않는 것 예시
+    - Box model 관련 요소(Width, height, margin, padding, border, box-sizkng,display), position 관련 요소(position, top/right/bottom/left, z-index) 등
