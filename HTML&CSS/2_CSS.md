@@ -149,3 +149,110 @@
     - absolute : 특정 부모의 위치
     - fixed : 화면의 위치
 
+## CSS Layout
+### Float
+- CSS 원칙
+  - 모든 요소는 네모(박스모델)이고, 위에서부터 아래로, 왼쪽에서 오른쪽으로 쌓인다.(좌측 상단에 배치)
+#### Float
+- 박스를 왼쪽 혹은 오른쪽으로 이동시켜 텍스트를 포함 인라인요소들이 주변을 wrapping 하도록 함
+- 요소가 Normal flow를 벗어나도록 함
+#### Float 속성
+- none : 기본값
+- left : 요소를 왼쪽으로 띄움
+- right : 요소를 오른쪽으로 띄움
+
+![float 속성](../image/HTML_CSS//캡처_22.PNG)
+
+#### Float 정리
+- Float는 레이아웃을 구성하기 위해 필수적으로 활용 되었으나, 최근 Flexbox, Grid 등장과 함께 사용도가 낮아짐
+- Float 활용 전략 - Normal Flow에서 벗어난 레이아웃 구성
+  - 원하는 요소들을 Float로 지정하여 배치
+
+### Flexbox
+- Latout을 위해 탄생한 Flexbox
+  - Float & inline-block 등을 이용한 Layout은 솔직히 사용하기 쉽지 않음
+  - Layout에 특화된 기능을 만들면 어떨까?
+- CSS Flexible Box Layout
+  - 행과 열 형태로 아이템들을 배치하는 1차원 레이아웃 모델
+  - 축
+    - main axis(메인 축)
+    - cross axis(교차 축)
+  - 구성요소
+    - Flex Container(부모 요소)
+      - 컨테이너 안에 아이템이 담겨있다! 컨테이너를 조작해서 배치하기
+    - Flex Item(자식 요소)
+  
+![flexible Box Layout](../image/HTML_CSS//캡처_23.PNG)
+
+#### Flexbox 축
+- flex-direction : row 
+
+![Flexbox 축](../image/HTML_CSS//캡처_24.PNG)
+
+#### FLexbox 구성 요소
+- Flex Container(부모 요소)
+  - Flexbox 레이아웃을 형성하는 가장 기본적인 모델
+  - Flex Item들이 놓여있는 영역
+  - display 속성을 flex 혹은 inline-flex로 지정
+- Flex Item(자식 요소)
+  - 컨테이너에 속해 있는 컨텐츠(박스)
+
+#### Flexbox 시작
+- Flexbox의 속성은 컨테이너에 적용하는 속성과 아이템에 적용하는 속성으로 나뉜다.
+
+![Flexbox 축](../image/HTML_CSS//캡처_25.PNG)
+
+- 부모 요소에 display:flex
+- 컨테이너 안에 아이템들이 배치되는데 주축을 기준으로 배치되며 각각의 아이템들은 내용물의 width를 갖도록, 아이템들의 height는 컨테이너와 같도록 조정된다.
+- 만약 각각의 아이템이 저마다의 높이를 가지고 있다면, flex는 자동으로 맞춰준다. 즉 Layout 배치가 매우 쉬워진다.
+
+#### FLex 속성
+- 배치 설정
+  - flex-direction
+  - flex-wrap
+- 공간 나누기
+  - justify-content(main axis)
+  - align-content(cross axis)
+- 정렬
+  - align-items(모든 아이템을 cross axis 기준으로)
+  - align-self(개별 아이템)
+#### Flex 속성 : flex-direction
+- Main axis 기준 방향 설정
+- 역방향의 경우 HTML 태그 선언 순서와 시각적으로 다르니 유의
+
+![Flex 속성](../image/HTML_CSS//캡처_26.PNG)
+
+#### Flex 속성 : flex-wrap
+- 아이템이 컨테이너를 벗어나는 경우 해당 영역 내에 배치되도록 설정
+- 즉, 기본적으로 컨테이너 영역을 벗어나지 않도록 함
+
+![Flex 속성2](../image/HTML_CSS//캡처_27.PNG)
+
+#### Flex 속성 : flex-direction & flex-wrap
+- flex-direction : Main axis의 방향을 설정
+- flex-wrap : 요소들이 강제로 한 줄에 배치 되게 할 것인지 여부 설정
+  - nowrap(기본값) : 한 줄에 배치
+  - wrap : 넘치면 그 다음 줄로 배치
+- flex-flow
+  - flex-direction 과 flex-wrap의 shorthand
+  - flrx-direction 과 flex-wrap에 대한 설정 값을 차례로 작성
+  - 예시) flex-flow : row nowrap;
+
+#### Flex 속성 : justify-content
+- Main axis를 기준으로 공간 배분
+
+![Flex 속성3](../image/HTML_CSS//캡처_28.PNG)
+
+#### Flex 속성 : align-content
+- Cross axis를 기준으로 공간 배분(아이템이 한 줄로 배치되는 경우 확인할 수 없음)
+
+![Flex 속성4](../image/HTML_CSS//캡처_29.PNG)
+
+#### Flex 속성 : justify-content & align-content
+- 공간 배분
+  - flex-start(기본 값) : 아이템들이 axis 시작점으로
+  - flex-end : 아이템들을 axis 끝 쪽으로
+  - center : 아이템들을 axis 중앙으로
+  - space-between : 아이템 사이의 간격을 균일하게 분배
+  - space-around : 아이템을 둘러싼 영역을 균일하게 분배(가질 수 있는 영역을 반으로 나눠서 양쪽에)
+  - space-evenly : 전체 영역에서 아이템 간 간격을 균일하게 분배
