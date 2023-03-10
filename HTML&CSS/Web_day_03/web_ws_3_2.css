@@ -1,0 +1,73 @@
+.login-wrap {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.red-banner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: red;
+  height: 40px;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+h1 {
+  font-weight: 600;
+  font-size: xx-large;
+}
+.grey-divider {
+  border: 1px solid lightgrey;
+}
+.signin-form-wrap {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.signin-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-weight: bold;
+}
+.blue-divider {
+  border :2px solid blue;
+}
+.signin-form {
+  display: flex;
+  flex-direction: column;
+}
+.input-label {
+  font-weight: bold;
+  font-size: large;
+  padding: 10px 20px;
+}
+.signin-input {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.password-find {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.password-find a {
+  color:blue;
+}
+.sign-in-btn {
+  height: 45px;
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  font-size: large;
+  margin: 20px 20px;
+}
