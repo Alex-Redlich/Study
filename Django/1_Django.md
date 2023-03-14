@@ -159,6 +159,25 @@
 - URL - VIEW - TEMPLATE 데이터 흐름 이해하기
 #### URLs
 - URL-VIEW-TEMPLATE 기초 과정을 작성해보고 데이터의 흐름을 이해하기
+![URL](../image/Django///캡처_007.PNG)
+
+#### View
+![view](../image/Django///캡처_008.PNG)
+
+#### Templates
+![templates](../image/Django///캡처_009.PNG)
+
+#### render
+- `render(request, template_name, context)`
+- 주어진 템플릿을 주어진 컨텍스트 데이터와 결합하고 렌더링 된 텍스트와 함께 HttpResponse(응답) 객체를 반환하는 함수
+  1. request
+    - 응답을 생성하는 데 사용되는 요청 객체
+  2. template_name
+    - 템플릿의 전체 이름 또는 템플릿 이름의 경로
+  3. context
+    - 템플릿에서 사용할 데이터 (딕셔너리 타입으로 작성)
 
 
-
+### 코드 작성 순서
+- 앞으로 Django에서의 코드 작성은 URL -> View -> Template 순으로 작성
+![코드작성순서](../image/Django///캡처_010.PNG)
