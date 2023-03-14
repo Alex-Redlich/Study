@@ -159,6 +159,7 @@
 - URL - VIEW - TEMPLATE 데이터 흐름 이해하기
 #### URLs
 - URL-VIEW-TEMPLATE 기초 과정을 작성해보고 데이터의 흐름을 이해하기
+
 ![URL](../image/Django///캡처_007.PNG)
 
 #### View
