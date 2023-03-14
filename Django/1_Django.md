@@ -55,6 +55,14 @@
 - 앞으로 우리가 배우는 것도 이 클라이언트-서버 구조를 만드는 방법을 배우는 것
 - 이 중에서 Django는 서버를 구현하는 웹 프레임 워크
 
+### Django
+- Django 설치
+  - pip install django==3.2.18
+- 프로젝트 생성
+  - django-admin startproject firstpjt
+- 서버 실행
+  - python manage.py runserver
+
 ### 가상환경
 - 패키지와 가상환경
   - 이제부터 정말 많은 외부 패키지를 가져다 사용할 수 있다.
@@ -77,4 +85,80 @@
   - pip freeze > requirements.txt
 - 파일로부터 패키지 설치
   - pip install -r requirements.txt
-- 
+
+![가상환경2](../image/Django///캡처_003.PNG)
+
+### 프로젝트와 앱
+
+#### 프로젝트 구조
+
+![프로젝트](../image/Django///캡처_004.PNG)
+- __init__.py
+  - python에게 이 디렉토리를 하나의 Python 패키지로 다루도록 지시
+  - 별도로 추가 코드를 작성하지 않음
+- asgi.py
+  - Asynchronous Server Gateway Interface
+  - Django 애플리케이션이 비동기식 웹 서버와 연결 및 소통하는 것을 도움
+  - 추후 배포 시에 사용하며 지금은 수정하지 않음
+- settings.py
+  - Django 프로젝트 설정을 관리
+- urls.py
+  - 사이트의 url과 적절한 views의 연결을 지정
+- wsgi.py
+  - Web Server Gateway Interface
+  - Django 애플리케이션이 웹서버와 연결 및 소통하는 것을 도움
+  - 추후 배포시에 사용하며 지금은 수정하지 않음
+- manage.py
+  - Django 프로젝트와 다양한 방법으로 상호작용하는 커맨드라인 유틸리티
+
+#### Django Application
+- 애플리케이션(앱)생성
+  - python manage.py startapp articles
+  (일반적으로 애플리케이션 이름은 '복수형'으로 작성하는 것을 권장)
+
+- 앱(App) == 하나의 큰 기능 단위
+- 정해진 규칙은 없으며 개발자가 판단해서 앱 생성
+- 여러개의 앱이 아닌 단일 앱으로 개발해도 괜찮음
+
+#### 애플리케이션 구조
+
+![앱](../image/Django///캡처_005.PNG)
+- admin.py
+  - 관리자용 페이지를 설정하는 곳
+- apps.py
+  - 앱의 정보가 작성된 곳
+  - 별도의 추가 코드를 작성하지 않음
+- models.py
+  - 애플리케이션에서 사용하는 Model을 정의하는 곳
+  - MTV 패턴의 M에 해당
+- tests.py
+  - 프로젝트의 테스트 코드를 작성하는 곳
+- views.py 
+  - view 함수들이 정이 되는 곳
+  - MTV 패턴의 V에 해당
+
+#### 애플리케이션 등록
+- 앱을 사용하기 위해서는 반드시 INSTALLED_APPS 리스트에 반드시 추가해야 함
+
+![앱 등록](../image/Django///캡처_006.PNG)
+
+#### Project & Application
+- Project
+  - "collection of apps"
+  - 프로젝트는 앱의 집합
+  - 프로젝트에는 여러 앱이 포함될 수 있음
+  - 앱은 여러 프로젝트에 있을 수 있음
+- Application
+  - 앱은 실제 요청을 처리하고 페이지를 보여주는 등의 역할을 담당
+  - 앱은 하나의 역할 및 기능 단위로 작성하는 것을 권장함
+
+### 요청과 응답
+- Django의 세가지 구조
+- Model - view - template
+
+- URL - VIEW - TEMPLATE 데이터 흐름 이해하기
+#### URLs
+- URL-VIEW-TEMPLATE 기초 과정을 작성해보고 데이터의 흐름을 이해하기
+
+
+
